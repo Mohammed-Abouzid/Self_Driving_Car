@@ -1,0 +1,21 @@
+
+-p_parameter(Kp__): when it's very small the response was slow. higher means faster response but still get error.
+-i_parameter(Ki__): it's important to decrease the error but with higher value get overshoot so the car move in zigzag way.
+-d_parameter(Kd__): it's main advantage is to reduce the overshoot. when I have defined it flase (as in the note below), the overshoot was there causing the car car to move in zigzag and then get out of the road.
+
+
+I have used only the parameters and tried to tune them manually, and here's my outcome: 
+Kp__ = 0.2;
+Ki__ = 0.007;
+Kd__ = 12.0; 
+
+the errors are:
+d_error = cte - p_error;
+p_error = cte;
+i_error += cte;
+
+Note:
+at the first I have mistakenly defined the d_error after p_error, this means d_error=cte-cte=0, then I got an overshoot whith every road curve. when I corrected it, the controller worked very well
+
+- I used the error correction to control the steering angle.
+- also I have used it to control the throttle in order to limit the acceleration of the car as possible
